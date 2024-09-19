@@ -11,6 +11,7 @@ Welcome to the PhoneBook CLI! This command-line interface allows you to manage y
    - [Delete a Contact](#delete-a-contact)
    - [List All Contacts](#list-all-contacts)
    - [Import Contacts from CSV](#import-contacts-from-csv)
+   - [Export Contacts to CSV](#export-contacts-to-csv)
    - [Sort Contacts](#sort-contacts)
    - [Group Contacts](#group-contacts)
    - [Search Contacts](#search-contacts)
@@ -83,6 +84,12 @@ To import contacts from a CSV file, use the [`import`] action with the `path` to
 ```sh
 python cli.py import --path "contacts.csv"
 ```
+### Export Contacts to CSV
+
+To export all contacts to a CSV file, use the following command:
+
+```sh
+python cli.py export --path "exported_contacts.csv"
 
 ### Sort Contacts
 
@@ -158,18 +165,22 @@ Here is an example of a typical session:
     ```sh
     python cli.py import --path "contacts.csv"
     ```
+7. Export Contacts to CSV file:
+    ```sh
+    python3 cli.py export --path "exported_contacts.csv"
+    ```
 
-7. Sort contacts by last name:
+8. Sort contacts by last name:
     ```sh
     python cli.py sort --key "last_name"
     ```
 
-8. Group contacts by first name:
+9.  Group contacts by first name:
     ```sh
     python cli.py group --key "first_name"
     ```
 
-9. Filter contacts by time frame:
+10. Filter contacts by time frame:
     ```sh
     python cli.py filter --start_date "2023-01-01" --end_date "2023-12-31"
     ```
