@@ -24,7 +24,7 @@ Welcome to the PhoneBook CLI! This command-line interface allows you to manage y
 1. **Clone the repository**:
     First, you need to clone the repository from GitHub to your local machine. Open your terminal and run the following command:
     ```sh
-    git clone https://github.com/yourusername/phonebook-cli.git
+    git clone https://github.com/ivanivan999/GNG-5300-Python.git
     ```
     This command will create a directory named `phonebook-cli` in your current working directory and download all the project files into it.
 
