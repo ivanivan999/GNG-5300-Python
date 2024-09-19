@@ -1,0 +1,6 @@
+first_name,last_name,phone,email,address,created_at,updated_at
+John,Doe,(987) 654-3210,john.new@example.com,123 Main St,2024-09-18T20:20:02.012058,2024-09-18T20:34:25.208662
+John,Doe,(123) 456-7890,john.doe@example.com,123 Main St,2024-09-18T20:49:42.619500,2024-09-18T20:49:42.619983
+Jane,Smith,(234) 567-8901,jane.smith@example.com,456 Oak St,2024-09-18T20:49:42.621930,2024-09-18T20:49:42.621938
+Alice,Johnson,(345) 678-9012,alice.johnson@example.com,789 Pine St,2024-09-18T20:49:42.622977,2024-09-18T20:49:42.622985
+Bob,Brown,(456) 789-0123,bob.brown@example.com,101 Maple St,2024-09-18T20:49:42.623942,2024-09-18T20:49:42.623950
