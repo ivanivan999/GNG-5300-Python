@@ -5,7 +5,8 @@ Welcome to the PhoneBook CLI! This command-line interface allows you to manage y
 ## Table of Contents
 
 1. Installation
-2. Usage
+2. Data Structure
+3. Usage
    - [Add a Contact](#add-a-contact)
    - [Update a Contact](#update-a-contact)
    - [Delete a Contact](#delete-a-contact)
@@ -16,8 +17,8 @@ Welcome to the PhoneBook CLI! This command-line interface allows you to manage y
    - [Group Contacts](#group-contacts)
    - [Search Contacts](#search-contacts)
    - [Filter Contacts by Time Frame](#filter-contacts-by-time-frame)
-3. [Input Validation](#input-validation)
-4. [Logging and Auditing](#logging-and-auditing)
+4. [Input Validation](#input-validation)
+5. [Logging and Auditing](#logging-and-auditing)
 
 ## Installation
 
@@ -42,12 +43,62 @@ Welcome to the PhoneBook CLI! This command-line interface allows you to manage y
 
 By following these steps, you will have the PhoneBook CLI set up and ready to use on your local machine.
 
+## Data Structure
+
+### Contact
+
+Each contact in the PhoneBook CLI is represented as a dictionary with the following keys:
+
+- `first_name` (string): The first name of the contact.
+- `last_name` (string): The last name of the contact.
+- `phone` (string): The phone number of the contact in the format `(###) ###-####`.
+- `email` (string, optional): The email address of the contact.
+- `address` (string, optional): The physical address of the contact.
+
+Example:
+```python
+contact = {
+    "first_name": "John",
+    "last_name": "Doe",
+    "phone": "(123) 456-7890",
+    "email": "john.doe@example.com",
+    "address": "123 Main St"
+}
+```
+
+### PhoneBook
+
+The phonebook is a list of contacts. Each contact is stored as a dictionary within this list.
+
+Example:
+```python
+phonebook = [
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "phone": "(123) 456-7890",
+        "email": "john.doe@example.com",
+        "address": "123 Main St"
+    },
+    {
+        "first_name": "Alice",
+        "last_name": "Smith",
+        "phone": "(555) 123-4567",
+        "email": "alice.smith@example.com",
+        "address": "456 Elm St"
+    }
+]
+```
+
+The phonebook allows you to perform various operations such as adding, updating, deleting, and searching for contacts.
+
+
 
 ## Usage
 
 ### Add a Contact
 
-To add a new contact, use the [`add`] action with the required fields: `first_name`, `last_name`, and `phone`. Optional fields include `email` and `address`.
+To add a new contact, use the [`add`] action with the required fields: `first_name`, `last_name`, and `phone`. Optional fields include `email` and `address`. Note that the contact cannot be a duplicate; if a contact with the same first name, last name, email, address, and phone number already exists, it will not be added or imported.
 
 ```sh
 python cli.py add --first_name "John" --last_name "Doe" --phone "(123) 456-7890" --email "john.doe@example.com" --address "123 Main St"
@@ -98,6 +149,7 @@ To export all contacts to a CSV file, use the following command:
 
 ```sh
 python cli.py export --path "exported_contacts.csv"
+```
 
 ### Sort Contacts
 
@@ -133,14 +185,14 @@ python cli.py filter --start_date "2023-01-01" --end_date "2023-12-31"
 
 ## Add and Import Validation
 
-### Import Validation
+### Add Validation
 
 - **Phone Number**: Must be in the format `(###) ###-####`.
 - **Email Address**: Must be a valid email address format.
 
 ### Duplicate Contact Prevention
 
-If a contact with the same first name, last name, and phone number already exists in the phonebook, the new contact will not be added. This validation helps maintain the integrity of the contact list by preventing duplicate entries.
+If a contact with the same first name, last name, email, address and phone number already exists in the phonebook, the new contact will not be added. This validation helps maintain the integrity of the contact list by preventing duplicate entries.
 
 ## Logging and Auditing
 
@@ -215,7 +267,7 @@ python -m unittest tests/test_cli.py
 
 ## Conclusion
 
-The PhoneBook CLI is a powerful tool for managing your contacts. With its user-friendly interface and comprehensive features, you can easily add, update, delete, search, sort, and group your contacts. For any further assistance, refer to the help option:
+The Phonebook CLI is a command-line application designed to manage contacts efficiently. It supports various operations such as adding, updating, deleting, searching, and sorting contacts. The application is built with Python and provides a user-friendly interface for managing contact lists. It also includes functionalities for importing and exporting contacts in CSV format and supports features like logging and auditing. For any further assistance, refer to the help option:
 
 ```sh
 python cli.py --help
