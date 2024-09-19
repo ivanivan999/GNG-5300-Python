@@ -3,7 +3,7 @@ import argparse
 import logging
 import re
 
-from phonebook import PhoneBook, Contact
+from phonebook.phonebook import PhoneBook, Contact
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -81,7 +81,19 @@ def delete_contact(args, phonebook):
         print("Error: Please provide the index of the contact to delete.")
         raise ValueError(error_message)
 
-
+def delete_contacts(args, phonebook):
+    """Delete multiple contacts from the phonebook."""
+    if args.indices:
+        indices = [int(index) - 1 for index in args.indices.split(',')]
+        phonebook.delete_contacts(indices)
+        logging.info("Contacts deleted successfully.")
+        print("Contacts deleted successfully.")
+    else:
+        error_message = "Indices are required to delete contacts."
+        logging.error(f"Error: {error_message}")
+        print("Error: Please provide the indices of the contacts to delete.")
+        raise ValueError(error_message)
+    
 def list_contacts(args, phonebook):
     """List all contacts in the phonebook."""
     contacts = phonebook.list_contacts()
@@ -224,13 +236,14 @@ def main():
     print("=" * 50)
 
     parser = argparse.ArgumentParser(description="PhoneBook CLI")
-    parser.add_argument("action", choices=["add", "update", "delete", "list", "import", "export", "sort", "group", "search", "filter"])
+    parser.add_argument("action", choices=["add", "update", "delete", "delete_batch", "list", "import", "export", "sort", "group", "search", "filter"])
     parser.add_argument("--first_name", help="First name of the contact")
     parser.add_argument("--last_name", help="Last name of the contact")
     parser.add_argument("--phone", help="Phone number of the contact")
     parser.add_argument("--email", help="Email of the contact")
     parser.add_argument("--address", help="Address of the contact")
     parser.add_argument("--index", type=int, help="Index of the contact to update or delete")
+    parser.add_argument("--indices", help="Comma-separated indices of contacts to delete")
     parser.add_argument("--path", help="Path to the CSV file to import/export contacts")
     parser.add_argument("--key", help="Key to sort or group by")
     parser.add_argument("--query", help="Search query for wildcard search")
@@ -244,6 +257,7 @@ def main():
         "add": add_contact,
         "update": update_contact,
         "delete": delete_contact,
+        "delete_batch": delete_contacts,
         "list": list_contacts,
         "import": import_contacts,
         "export": export_contacts,
@@ -258,7 +272,7 @@ def main():
         action(args, phonebook)
     else:
         logging.error("Invalid action.")
-        print("Invalid action. Please choose from 'add', 'update', 'delete', 'list', 'import', 'export', 'sort', 'group', 'search', or 'filter'.")
+        print("Invalid action. Please choose from 'add', 'update', 'delete', 'delete_batch', 'list', 'import', 'export', 'sort', 'group', 'search', or 'filter'.")
 
 if __name__ == "__main__":
     main()

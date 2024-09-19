@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from phonebook import PhoneBook, Contact
+from phonebook.phonebook import PhoneBook, Contact
 
 # test_cli.py
 from cli import (

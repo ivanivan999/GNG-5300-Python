@@ -68,6 +68,14 @@ To delete a contact, use the [`delete`] action with the `index` of the contact.
 ```sh
 python cli.py delete --index 0
 ```
+### Batch Delete Contacts
+
+To delete multiple contacts from the phonebook, provide a comma-separated list of indices:
+
+```sh
+python cli.py delete_batch --indices "1,2,3"
+```
+
 
 ### List All Contacts
 
@@ -82,7 +90,7 @@ python cli.py list
 To import contacts from a CSV file, use the [`import`] action with the `path` to the CSV file. The CSV file should have the following columns: `first_name`, `last_name`, `phone`, `email`, `address`.
 
 ```sh
-python cli.py import --path "contacts.csv"
+python3 cli.py import --path "data/contacts.csv"
 ```
 ### Export Contacts to CSV
 
@@ -123,10 +131,16 @@ To filter contacts added within a specific time frame, use the [`filter`] action
 python cli.py filter --start_date "2023-01-01" --end_date "2023-12-31"
 ```
 
-## Input Validation
+## Add and Import Validation
+
+### Import Validation
 
 - **Phone Number**: Must be in the format `(###) ###-####`.
 - **Email Address**: Must be a valid email address format.
+
+### Duplicate Contact Prevention
+
+If a contact with the same first name, last name, and phone number already exists in the phonebook, the new contact will not be added. This validation helps maintain the integrity of the contact list by preventing duplicate entries.
 
 ## Logging and Auditing
 

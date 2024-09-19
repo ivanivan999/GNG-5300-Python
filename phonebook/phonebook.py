@@ -5,7 +5,7 @@ from datetime import datetime
 import fnmatch
 import csv
 
-from contact import Contact
+from phonebook.contact import Contact
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -32,12 +32,29 @@ class PhoneBook:
             return []
 
     def add_contact(self, contact):
+        if self.is_duplicate(contact):
+            logging.warning("Attempted to add a duplicate contact")
+            print("This contact already exists in the phonebook.")
+            return
+        
         self.contacts.append(contact)
         self.save_contacts()
+        
         logging.info(
             f"Contact added: {contact.first_name} {contact.last_name}, "
             f"Phone: {contact.phone}, Email: {contact.email}, Address: {contact.address}"
         )
+        print(f"Contact added: {contact.first_name} {contact.last_name}")
+    
+    def is_duplicate(self, contact):
+        for existing_contact in self.contacts:
+            if (existing_contact.first_name == contact.first_name and
+                existing_contact.last_name == contact.last_name and
+                existing_contact.phone == contact.phone and
+                existing_contact.email == contact.email and
+                existing_contact.address == contact.address):
+                return True
+        return False
 
     def update_contact(self, index, first_name=None, last_name=None, phone=None, email=None, address=None):
         if 0 <= index < len(self.contacts):
@@ -54,6 +71,12 @@ class PhoneBook:
                 f"Phone: {contact.phone}, Email: {contact.email}, Address: {contact.address}"
             )
 
+    def delete_contacts(self, indices):
+        indices = sorted(indices, reverse=True)
+        for index in indices:
+            self.delete_contact(index)
+        logging.info(f"Contacts deleted at indices: {indices}")
+        
     def list_contacts(self):
         logging.info("Listing all contacts")
         return self.contacts
