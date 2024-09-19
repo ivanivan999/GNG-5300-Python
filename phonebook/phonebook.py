@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 
 class PhoneBook:
-    def __init__(self, filename="contacts.json"):
+    def __init__(self, filename="data/contacts.json"):
         self.filename = filename
         self.contacts = self.load_contacts()
         logging.info("PhoneBook initialized")
@@ -76,7 +76,7 @@ class PhoneBook:
         for index in indices:
             self.delete_contact(index)
         logging.info(f"Contacts deleted at indices: {indices}")
-        
+
     def list_contacts(self):
         logging.info("Listing all contacts")
         return self.contacts

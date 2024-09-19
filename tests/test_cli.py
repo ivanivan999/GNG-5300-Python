@@ -5,8 +5,8 @@ from phonebook.phonebook import PhoneBook, Contact
 # test_cli.py
 from cli import (
     validate_phone, validate_email, add_contact, update_contact, delete_contact,
-    list_contacts, import_contacts, export_contacts, sort_contacts, group_contacts,
-    search_contacts, filter_contacts
+    delete_contacts, list_contacts, import_contacts, export_contacts, sort_contacts,
+    group_contacts, search_contacts, filter_contacts
 )
 
 class TestCLI(unittest.TestCase):
@@ -48,7 +48,6 @@ class TestCLI(unittest.TestCase):
         with self.assertRaises(ValueError):
             add_contact(self.args, self.phonebook)
 
-
     def test_update_contact_success(self):
         self.args.index = 0
         self.args.first_name = "John"
@@ -73,6 +72,16 @@ class TestCLI(unittest.TestCase):
         self.args.index = None
         with self.assertRaises(ValueError):
             delete_contact(self.args, self.phonebook)
+
+    def test_delete_contacts_success(self):
+        self.args.indices = "1,2,3"
+        delete_contacts(self.args, self.phonebook)
+        self.phonebook.delete_contacts.assert_called_once_with([0, 1, 2])
+
+    def test_delete_contacts_missing_indices(self):
+        self.args.indices = None
+        with self.assertRaises(ValueError):
+            delete_contacts(self.args, self.phonebook)
 
     def test_list_contacts(self):
         self.args = MagicMock()

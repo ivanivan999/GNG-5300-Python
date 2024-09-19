@@ -175,29 +175,43 @@ Here is an example of a typical session:
     python cli.py delete --index 0
     ```
 
-6. Import contacts from a CSV file:
-    ```sh
-    python cli.py import --path "contacts.csv"
-    ```
-7. Export Contacts to CSV file:
-    ```sh
-    python3 cli.py export --path "exported_contacts.csv"
+6. Batch delete contacts:
+   ```sh
+    python cli.py delete_batch --indices "1,2,3"
     ```
 
-8. Sort contacts by last name:
+7. Import contacts from a CSV file:
+    ```sh
+    python cli.py import --path "data/contacts.csv"
+    ```
+8. Export Contacts to CSV file:
+    ```sh
+    python3 cli.py export --path "data/exported_contacts.csv"
+    ```
+
+9.  Sort contacts by last name:
     ```sh
     python cli.py sort --key "last_name"
     ```
 
-9.  Group contacts by first name:
+10. Group contacts by first name:
     ```sh
     python cli.py group --key "first_name"
     ```
 
-10. Filter contacts by time frame:
+11. Filter contacts by time frame:
     ```sh
     python cli.py filter --start_date "2023-01-01" --end_date "2023-12-31"
     ```
+## Test
+### Running Unit Tests
+To ensure the functionality of the CLI and the phonebook application, unit tests have been created. These tests verify that the various commands and features work as expected.
+
+To run the unit tests, use the following command:
+
+```sh
+python -m unittest tests/test_cli.py
+```
 
 ## Conclusion
 

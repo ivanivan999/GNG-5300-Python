@@ -43,5 +43,50 @@
         "address": "123 Main St",
         "created_at": "2024-09-19T11:21:40.402787",
         "updated_at": "2024-09-19T11:21:40.402804"
+    },
+    {
+        "first_name": "Ivan",
+        "last_name": "Johnson",
+        "phone": "(345) 678-9012",
+        "email": "alice.johnson@example.com",
+        "address": "789 Pine St",
+        "created_at": "2024-09-19T12:34:54.573983",
+        "updated_at": "2024-09-19T12:34:54.574287"
+    },
+    {
+        "first_name": "Jane",
+        "last_name": "Lee",
+        "phone": "(234) 567-8901",
+        "email": "jane.smith@example.com",
+        "address": "456 Oak St",
+        "created_at": "2024-09-19T12:34:54.576519",
+        "updated_at": "2024-09-19T12:34:54.576528"
+    },
+    {
+        "first_name": "John",
+        "last_name": "Ming",
+        "phone": "(987) 654-3210",
+        "email": "john.new@example.com",
+        "address": "123 Main St",
+        "created_at": "2024-09-19T12:34:54.577680",
+        "updated_at": "2024-09-19T12:34:54.577688"
+    },
+    {
+        "first_name": "John",
+        "last_name": "Fu",
+        "phone": "(123) 456-7890",
+        "email": "john.doe@example.com",
+        "address": "123 Main St",
+        "created_at": "2024-09-19T12:34:54.578905",
+        "updated_at": "2024-09-19T12:34:54.578912"
+    },
+    {
+        "first_name": "John",
+        "last_name": "Alice",
+        "phone": "(123) 456-7890",
+        "email": "john.doe@example.com",
+        "address": "123 Main St",
+        "created_at": "2024-09-19T12:34:54.580344",
+        "updated_at": "2024-09-19T12:34:54.580432"
     }
 ]
