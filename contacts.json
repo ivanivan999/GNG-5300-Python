@@ -9,15 +9,6 @@
         "updated_at": "2024-09-18T20:49:42.622985"
     },
     {
-        "first_name": "Bob",
-        "last_name": "Brown",
-        "phone": "(456) 789-0123",
-        "email": "bob.brown@example.com",
-        "address": "101 Maple St",
-        "created_at": "2024-09-18T20:49:42.623942",
-        "updated_at": "2024-09-18T20:49:42.623950"
-    },
-    {
         "first_name": "Jane",
         "last_name": "Smith",
         "phone": "(234) 567-8901",
@@ -43,5 +34,14 @@
         "address": "123 Main St",
         "created_at": "2024-09-18T20:49:42.619500",
         "updated_at": "2024-09-18T20:49:42.619983"
+    },
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "phone": "(123) 456-7890",
+        "email": "john.doe@example.com",
+        "address": "123 Main St",
+        "created_at": "2024-09-19T11:21:40.402787",
+        "updated_at": "2024-09-19T11:21:40.402804"
     }
 ]

@@ -42,12 +42,10 @@ def add_contact(args, phonebook):
             logging.error(f"Error: {e}")
             print(f"Error: {e}")
     else:
-        logging.error(
-            "Error: First name, last name, and phone are required to add a contact."
-        )
-        print(
-            "Error: Please provide the first name, last name, and phone number to add a contact."
-        )
+        error_message = "First name, last name, and phone are required to add a contact."
+        logging.error(f"Error: {error_message}")
+        print(f"Error: {error_message}")
+        raise ValueError(error_message)
 
 def update_contact(args, phonebook):
     """Update an existing contact in the phonebook."""
@@ -69,6 +67,7 @@ def update_contact(args, phonebook):
     else:
         logging.error("Error: Index is required to update a contact.")
         print("Error: Please provide the index of the contact to update.")
+        raise ValueError("Index is required to update a contact.")
 
 def delete_contact(args, phonebook):
     """Delete a contact from the phonebook."""
@@ -77,11 +76,13 @@ def delete_contact(args, phonebook):
         logging.info("Contact deleted successfully.")
         print("Contact deleted successfully.")
     else:
-        logging.error("Error: Index is required to delete a contact.")
+        error_message = "Index is required to delete a contact."
+        logging.error(f"Error: {error_message}")
         print("Error: Please provide the index of the contact to delete.")
+        raise ValueError(error_message)
 
 
-def list_contacts(phonebook):
+def list_contacts(args, phonebook):
     """List all contacts in the phonebook."""
     contacts = phonebook.list_contacts()
     if contacts:
@@ -213,3 +214,51 @@ def filter_contacts(args, phonebook):
     else:
         logging.error("Error: Start date and end date are required to filter contacts.")
         print("Error: Please provide both start date and end date to filter contacts.")
+
+def main():
+    """Main function to parse arguments and execute the corresponding action."""
+    # Welcome message
+    print("Welcome to the PhoneBook CLI!")
+    print("You can perform various operations like adding, viewing, searching, updating, and deleting contacts.")
+    print("Use the --help option to see available commands and options.")
+    print("=" * 50)
+
+    parser = argparse.ArgumentParser(description="PhoneBook CLI")
+    parser.add_argument("action", choices=["add", "update", "delete", "list", "import", "export", "sort", "group", "search", "filter"])
+    parser.add_argument("--first_name", help="First name of the contact")
+    parser.add_argument("--last_name", help="Last name of the contact")
+    parser.add_argument("--phone", help="Phone number of the contact")
+    parser.add_argument("--email", help="Email of the contact")
+    parser.add_argument("--address", help="Address of the contact")
+    parser.add_argument("--index", type=int, help="Index of the contact to update or delete")
+    parser.add_argument("--path", help="Path to the CSV file to import/export contacts")
+    parser.add_argument("--key", help="Key to sort or group by")
+    parser.add_argument("--query", help="Search query for wildcard search")
+    parser.add_argument("--start_date", help="Start date for filtering contacts (YYYY-MM-DD)")
+    parser.add_argument("--end_date", help="End date for filtering contacts (YYYY-MM-DD)")
+
+    args = parser.parse_args()
+    phonebook = PhoneBook()
+
+    actions = {
+        "add": add_contact,
+        "update": update_contact,
+        "delete": delete_contact,
+        "list": list_contacts,
+        "import": import_contacts,
+        "export": export_contacts,
+        "sort": sort_contacts,
+        "group": group_contacts,
+        "search": search_contacts,
+        "filter": filter_contacts
+    }
+
+    action = actions.get(args.action)
+    if action:
+        action(args, phonebook)
+    else:
+        logging.error("Invalid action.")
+        print("Invalid action. Please choose from 'add', 'update', 'delete', 'list', 'import', 'export', 'sort', 'group', 'search', or 'filter'.")
+
+if __name__ == "__main__":
+    main()
